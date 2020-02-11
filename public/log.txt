@@ -1,0 +1,55 @@
+--- Start to send SMS ---
+url: https://sms.dahancloud.com/API/sendMessage?sig=BD0B0C69DFE6DC60583A4AC549906C03
+header: Accept:application/json Content-Type:application/json;charset=utf-8 Authorization:NDI5MDhlYzdlMDMzNDY3MDk2NGMwODE2Y2ZlMDhkZjk6MjAxOTAxMTUyMTEwMjY=
+body: {'to':'13886146473','templateId':'4942','appId':'9a31dbb54d084cb2943dfe6378821cd2','datas':['198093']}
+response result: {"statusCode":"000000","statusMsg":"短信发送提交成功","templateSMS":{"smsMessageSid":"700808b3d8cf4f158ef780158b0ab3be","dateCreated":"2019-01-15 21:10:27"}}
+--- Start to send SMS ---
+url: https://sms.dahancloud.com/API/sendMessage?sig=145E545DB4F0B8A5AC99198C1CED7363
+header: Accept:application/json Content-Type:application/json;charset=utf-8 Authorization:NDI5MDhlYzdlMDMzNDY3MDk2NGMwODE2Y2ZlMDhkZjk6MjAxOTA2MTAxMDA2NTk=
+body: {'to':'13886146473','templateId':'4942','appId':'9a31dbb54d084cb2943dfe6378821cd2','datas':['409469']}
+response result: {"statusCode":"000000","statusMsg":"短信发送提交成功","templateSMS":{"smsMessageSid":"f40a95432b1c40ae8b1c5c2d5b08b349","dateCreated":"2019-06-10 10:07:03"}}
+--- Start to send SMS ---
+url: https://sms.dahancloud.com/API/sendMessage?sig=8D96D4A70C5F0131C176ED5065DB0D38
+header: Accept:application/json Content-Type:application/json;charset=utf-8 Authorization:NDI5MDhlYzdlMDMzNDY3MDk2NGMwODE2Y2ZlMDhkZjk6MjAxOTA2MTAxMDExMTY=
+body: {'to':'13886146473','templateId':'4942','appId':'9a31dbb54d084cb2943dfe6378821cd2','datas':['971171']}
+response result: {"statusCode":"000000","statusMsg":"短信发送提交成功","templateSMS":{"smsMessageSid":"1047e6425d1b45a387f13d2f6dee1273","dateCreated":"2019-06-10 10:11:18"}}
+--- Start to send SMS ---
+url: https://sms.dahancloud.com/API/sendMessage?sig=C4B4D13D6B61DC7638F48D34565411B0
+header: Accept:application/json Content-Type:application/json;charset=utf-8 Authorization:NDI5MDhlYzdlMDMzNDY3MDk2NGMwODE2Y2ZlMDhkZjk6MjAxOTA2MTAxMDIxNTk=
+body: {'to':'13886146473','templateId':'4942','appId':'9a31dbb54d084cb2943dfe6378821cd2','datas':['373407']}
+response result: {"statusCode":"000000","statusMsg":"短信发送提交成功","templateSMS":{"smsMessageSid":"2ae40e6f71b642a29d227939778b0873","dateCreated":"2019-06-10 10:22:01"}}
+--- Start to send SMS ---
+url: https://sms.dahancloud.com/API/sendMessage?sig=D4D7F7E707C3A0A7A43B67726A0D9526
+header: Accept:application/json Content-Type:application/json;charset=utf-8 Authorization:NDI5MDhlYzdlMDMzNDY3MDk2NGMwODE2Y2ZlMDhkZjk6MjAxOTA2MTAxMDI3MjA=
+body: {'to':'13886146473','templateId':'4942','appId':'9a31dbb54d084cb2943dfe6378821cd2','datas':['605299']}
+response result: {"statusCode":"000000","statusMsg":"短信发送提交成功","templateSMS":{"smsMessageSid":"b4604d970dfc42f6a6b2ee960c7ab14d","dateCreated":"2019-06-10 10:27:22"}}
+--- Start to send SMS ---
+url: https://sms.dahancloud.com/API/sendMessage?sig=0A4BC9CE7E5AE3F37A824D20E2386F19
+header: Accept:application/json Content-Type:application/json;charset=utf-8 Authorization:NDI5MDhlYzdlMDMzNDY3MDk2NGMwODE2Y2ZlMDhkZjk6MjAxOTA2MTAxMDMyMzU=
+body: {'to':'13886146473','templateId':'4942','appId':'9a31dbb54d084cb2943dfe6378821cd2','datas':['467172']}
+response result: {"statusCode":"000000","statusMsg":"短信发送提交成功","templateSMS":{"smsMessageSid":"e2d3b062cf8e4e65a71b9711256b08ef","dateCreated":"2019-06-10 10:32:37"}}
+--- Start to send SMS ---
+url: https://sms.dahancloud.com/API/sendMessage?sig=EC2918E9C203B7EBD50CC1195FA3BFE2
+header: Accept:application/json Content-Type:application/json;charset=utf-8 Authorization:NDI5MDhlYzdlMDMzNDY3MDk2NGMwODE2Y2ZlMDhkZjk6MjAxOTA2MTAxMTMyMzc=
+body: {'to':'13886146473','templateId':'4942','appId':'9a31dbb54d084cb2943dfe6378821cd2','datas':['662696']}
+response result: {"statusCode":"000000","statusMsg":"短信发送提交成功","templateSMS":{"smsMessageSid":"9393d85b3caf4266ac3645f8035e87db","dateCreated":"2019-06-10 11:32:39"}}
+--- Start to send SMS ---
+url: https://sms.dahancloud.com/API/sendMessage?sig=254371B39D2B11A6DE7DD1F248E67E79
+header: Accept:application/json Content-Type:application/json;charset=utf-8 Authorization:NDI5MDhlYzdlMDMzNDY3MDk2NGMwODE2Y2ZlMDhkZjk6MjAxOTA2MTAxMTM5MTM=
+body: {'to':'13886146473','templateId':'4942','appId':'9a31dbb54d084cb2943dfe6378821cd2','datas':['546544']}
+response result: {"statusCode":"000000","statusMsg":"短信发送提交成功","templateSMS":{"smsMessageSid":"983b0e05c8b5400bb21396f4003030a4","dateCreated":"2019-06-10 11:39:15"}}
+--- Start to send SMS ---
+url: https://sms.dahancloud.com/API/sendMessage?sig=FAA5C622449CB79759D5D02C5D9901B5
+header: Accept:application/json Content-Type:application/json;charset=utf-8 Authorization:NDI5MDhlYzdlMDMzNDY3MDk2NGMwODE2Y2ZlMDhkZjk6MjAxOTA2MTAxMTUwNDI=
+body: {'to':'13886146473','templateId':'4942','appId':'9a31dbb54d084cb2943dfe6378821cd2','datas':['987853']}
+response result: {"statusCode":"000000","statusMsg":"短信发送提交成功","templateSMS":{"smsMessageSid":"b058c5ca34f94773a327607aead2a5a6","dateCreated":"2019-06-10 11:50:44"}}
+--- Start to send SMS ---
+url: https://sms.dahancloud.com/API/sendMessage?sig=8E66A8098E6794AB9AE614F9C293A1BD
+header: Accept:application/json Content-Type:application/json;charset=utf-8 Authorization:NDI5MDhlYzdlMDMzNDY3MDk2NGMwODE2Y2ZlMDhkZjk6MjAxOTA2MTAxMTU1MzE=
+body: {'to':'13886146473','templateId':'4942','appId':'9a31dbb54d084cb2943dfe6378821cd2','datas':['011405']}
+response result: {"statusCode":"000000","statusMsg":"短信发送提交成功","templateSMS":{"smsMessageSid":"ed8deeb608224285ae5387b8bff85258","dateCreated":"2019-06-10 11:55:33"}}
+--- Start to send SMS ---
+url: https://sms.dahancloud.com/API/sendMessage?sig=B2059E328FE25188A3F31B8E88DDFA40
+header: Accept:application/json Content-Type:application/json;charset=utf-8 Authorization:NDI5MDhlYzdlMDMzNDY3MDk2NGMwODE2Y2ZlMDhkZjk6MjAxOTA2MTMxNDQyMjg=
+body: {'to':'13886146473','templateId':'4942','appId':'9a31dbb54d084cb2943dfe6378821cd2','datas':['679865']}
+response result: {"statusCode":"000000","statusMsg":"短信发送提交成功","templateSMS":{"smsMessageSid":"161e82c153f74b11858d8140488ec438","dateCreated":"2019-06-13 14:42:28"}}
