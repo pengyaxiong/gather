@@ -30,6 +30,7 @@ Route::group(['prefix' => 'system', 'namespace' => 'System', 'as' => 'system.'],
     Route::patch('permission/sort_order', 'PermissionController@sort_order')->name('permission.sort_order');
     Route::resource('permission', 'PermissionController');
     Route::patch('user/is_something', 'UserController@is_something')->name('user.is_something');
+    Route::post('user/mail', 'UserController@mail')->name('user.mail');
     Route::resource('user', 'UserController');
     Route::resource('role', 'RoleController');
 

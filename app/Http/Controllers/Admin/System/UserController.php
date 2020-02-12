@@ -8,7 +8,7 @@ use App\Http\Requests\Admin\System as Requests;
 
 use App\Models\System\User;
 use App\Models\System\Role;
-
+use Mail;
 class UserController extends Controller
 {
     /**
@@ -68,6 +68,36 @@ class UserController extends Controller
         return redirect(route('system.user.index'))->with('notice', '新增成功~');
     }
 
+    public function show($id)
+    {
+        $user = User::find($id);
+        return view('admin.system.user.show', compact('user'));
+    }
+
+    public function mail(Request $request)
+    {
+        $name=$request->name;
+        $content=$request->markdown_html_code;
+
+        // 第一个参数填写模板的路径，第二个参数填写传到模板的变量
+         Mail::send('layouts.admin.partials.user_mail',['name' => $name,'content'=>$content],function ($message)use ($request) {
+            // 发件人（你自己的邮箱和名称）
+            $message->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+            // 收件人的邮箱地址
+            $message->to($request->email);
+            // 邮件主题
+            $message->subject($request->title);
+        });
+
+        if(count(Mail::failures()) < 1){
+            return redirect(route('system.user.index'))->with('notice', '发送成功~');
+        }else{
+            return redirect(route('system.user.index'))->with('alert', '发送邮件失败，请重试~');
+        }
+
+
+    }
+
     /**
      * 编辑用户信息
      * @param $id
@@ -94,10 +124,10 @@ class UserController extends Controller
         $messages = [
             'password.min' => '密码最少为6位!'
         ];
-        if (!empty($request->password)){
+        if (!empty($request->password)) {
             $this->validate($request, [
                 'password' => 'min:6'
-            ],$messages);
+            ], $messages);
         }
 
 

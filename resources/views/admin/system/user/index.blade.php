@@ -65,6 +65,11 @@
                                     <div class="am-btn-toolbar">
                                         <div class="am-btn-group am-btn-group-xs">
                                             <a class="am-btn am-btn-default am-btn-xs am-text-secondary"
+                                               href="{{route('system.user.show', $user->id)}}">
+                                                <span class="am-icon-send"></span> 邮件
+                                            </a>
+
+                                            <a class="am-btn am-btn-default am-btn-xs am-text-secondary"
                                                href="{{route('system.user.edit', $user->id)}}">
                                                 <span class="am-icon-pencil-square-o"></span> 编辑
                                             </a>
