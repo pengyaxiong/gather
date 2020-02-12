@@ -1,4 +1,4 @@
-@extends('layouts.admin.partials.base')
+@extends('layouts.admin.partials.application')
 
 @section('title', __('Login'))
 

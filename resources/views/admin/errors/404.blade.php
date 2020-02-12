@@ -1,4 +1,4 @@
-@extends('layouts.admin.partials.base')
+@extends('layouts.admin.partials.application')
 
 @section('title','404')
 
@@ -9,11 +9,11 @@
 @section('content')
     <div class="admin-content">
         <div class="admin-content-body">
-            <div class="am-cf am-padding am-padding-bottom-0">
-                <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">404</strong> / <small>That’s an error</small></div>
-            </div>
+            {{--<div class="am-cf am-padding am-padding-bottom-0">--}}
+                {{--<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">404</strong> / <small>That’s an error</small></div>--}}
+            {{--</div>--}}
 
-            <hr>
+            {{--<hr>--}}
 
             <div class="am-g">
                 <div class="am-u-sm-12">

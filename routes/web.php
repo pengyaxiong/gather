@@ -13,7 +13,7 @@
 
 
 //前台
-Route::group(['namespace' => 'Customer', 'domain' => env('HOME_DOMAIN')], function () {
+Route::group(['middleware' => ['uv'],'namespace' => 'Customer', 'domain' => env('HOME_DOMAIN')], function () {
 
     //前台首页
     Route::get('/', 'HomeController@index');

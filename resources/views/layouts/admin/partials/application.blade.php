@@ -49,35 +49,36 @@
     <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
 
         <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+            @auth()
+                <li class="am-dropdown" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                        <span class="am-icon-users"></span> {{ucfirst(Auth::user()->name)}}
+                        {{Auth::user()->roles[0]['name']}}
+                        <span class="am-icon-caret-down"></span>
+                    </a>
+                    <ul class="am-dropdown-content">
+                        <li>
+                            <a href="{{route('system.cache.destroy')}}" data-method="delete" data-token="{{csrf_token()}}">
+                                <span class="am-icon-refresh am-icon-spin"></span>
+                                清除缓存
+                            </a>
+                        </li>
+                        <li><a href="{{route('system.user.edit', Auth::user()->id)}}"><span class="am-icon-cog"></span>
+                                设置</a></li>
+                        <li>
+                            <a href="{{ url('/logout') }}"
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <span class="am-icon-power-off"></span> 退出
+                            </a>
 
-            <li class="am-dropdown" data-am-dropdown>
-                <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                    <span class="am-icon-users"></span> {{ucfirst(Auth::user()->name)}}
-                    {{Auth::user()->roles[0]['name']}}
-                    <span class="am-icon-caret-down"></span>
-                </a>
-                <ul class="am-dropdown-content">
-                    <li>
-                        <a href="{{route('system.cache.destroy')}}" data-method="delete" data-token="{{csrf_token()}}">
-                            <span class="am-icon-refresh am-icon-spin"></span>
-                            清除缓存
-                        </a>
-                    </li>
-                    <li><a href="{{route('system.user.edit', Auth::user()->id)}}"><span class="am-icon-cog"></span>
-                            设置</a></li>
-                    <li>
-                        <a href="{{ url('/logout') }}"
-                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            <span class="am-icon-power-off"></span> 退出
-                        </a>
-
-                        <form id="logout-form" action="{{ url('/logout') }}" method="POST"
-                              style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
-                    </li>
-                </ul>
-            </li>
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST"
+                                  style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            @endauth
             <li class="am-hide-sm-only">
                 <a href="javascript:;" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span>
                     <span class="admin-fullText">开启全屏</span></a></li>
@@ -87,13 +88,15 @@
 
 <div class="am-cf admin-main">
 
-    <!-- sidebar start -->
+<!-- sidebar start -->
+@auth()
 @include("layouts.admin.partials._sidebar")
-    <!-- sidebar end -->
+@endauth
+<!-- sidebar end -->
 
-    <!-- content start -->
+<!-- content start -->
 @yield('content')
-    <!-- content end -->
+<!-- content end -->
 </div>
 
 
@@ -106,20 +109,14 @@
 <script src="/vendor/amazeui/js/vendor/amazeui.ie8polyfill.min.js"></script>
 <![endif]-->
 
-<!--[if (gte IE 9)|!(IE)]><!-->
 <script src="/js/jquery-3.1.0.min.js"></script>
-<!--<![endif]-->
 <script src="/vendor/amazeui/js/amazeui.min.js"></script>
-
 
 <script src='/vendor/nprogress/nprogress.js'></script>
 
 <script src="/js/admin.js"></script>
 <script src="/js/destroy.js"></script>
 <script src="/js/clipboard.js"></script>
-
-{{--<script src="/js/app.js"></script>--}}
-
 @yield('js')
 </body>
 </html>

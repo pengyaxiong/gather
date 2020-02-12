@@ -26,7 +26,7 @@ class UV
 
         if (config('admin.statistics') == true) { // 此处可以不定义配置开关。
             // 清空Redis数据库
-             Redis::flushall();
+           //  Redis::flushall();
             //查询所有WebStatistics缓存记录数据
             $count = Redis::LLEN('WebStatistics');
             $redisList = Redis::lrange('WebStatistics', 0, $count);

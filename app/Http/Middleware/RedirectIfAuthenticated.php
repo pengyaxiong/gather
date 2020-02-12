@@ -8,11 +8,11 @@ use Route, URL;
 class RedirectIfAuthenticated
 {
     protected $except = [
-        //排除
-        'password.reset',
-        'password.email',
-        'password.update',
-        'password.request',
+        //排除路由
+//        'password.reset',
+//        'password.email',
+//        'password.update',
+//        'password.request',
         'register'
     ];
 

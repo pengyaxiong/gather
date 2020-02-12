@@ -1,13 +1,13 @@
-@extends('layouts.admin.partials.base')
+@extends('layouts.admin.partials.application')
 
 @section('content')
     <div class="admin-content">
         <div class="admin-content-body">
-            <div class="am-cf am-padding am-padding-bottom-0">
-                <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">403</strong> / <small>没有权限</small></div>
-            </div>
+            {{--<div class="am-cf am-padding am-padding-bottom-0">--}}
+                {{--<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">403</strong> / <small>没有权限</small></div>--}}
+            {{--</div>--}}
 
-            <hr>
+            {{--<hr>--}}
 
             <div class="am-g">
                 <div class="am-u-sm-12">

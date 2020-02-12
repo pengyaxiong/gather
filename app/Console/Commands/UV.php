@@ -41,7 +41,6 @@ class UV extends Command
         //查询所有WebStatistics缓存记录数据
         $count = Redis::LLEN('WebStatistics');
         $redisList = Redis::lrange('WebStatistics', 0, $count);
-
         $this->info($count);
         array_walk($redisList, function ($value, $key) {
             //返回并删除名称为key的list中的尾元素

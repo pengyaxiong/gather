@@ -109,7 +109,6 @@ class UserController extends Controller
         }
 
         $user->name = $request->name;
-        $user->rate = $request->rate;
         $user->real_name = $request->real_name;
         $user->email = $request->email;
         $user->phone = $request->phone;

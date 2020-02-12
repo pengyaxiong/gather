@@ -25,7 +25,8 @@ class Spider extends Command
     private $counter = 1;
     private $concurrency = 3;  // 同时并发抓取
 
-    private $keyWords = ['css', 'js', 'laravel'];
+    private $users = ['CycloneAxe', 'appleboy', 'Aufree', 'lifesign',
+        'overtrue', 'zhengjinghua', 'NauxLiu','grubby'];
 
 
     /**
@@ -53,45 +54,33 @@ class Spider extends Command
      */
     public function handle()
     {
-        $this->totalPageCount = count($this->keyWords);
+        $this->totalPageCount = count($this->users);
 
-        $guzzle_client = new GuzzleClient();
+        $client = new GuzzleClient();
 
-        $goutte_client = new GoutteClient();
+        $requests = function ($total) use ($client) {
+            foreach ($this->users as $key => $user) {
 
-        $goutte_client->setClient($guzzle_client);
-
-        $requests = function ($total) use ($goutte_client) {
-
-            foreach ($this->keyWords as $key => $keyWord) {
-
-                $url='https://www.youtube.com/results?search_query='.$key;
-                yield function () use ($goutte_client, $url) {
-                   // return $client->getAsync($url);
-                    return $goutte_client->request('GET',$url);
+                $uri = 'https://api.github.com/users/' . $user;
+                yield function() use ($client, $uri) {
+                    return $client->getAsync($uri);
                 };
             }
         };
 
-        $pool = new Pool($guzzle_client, $requests($this->totalPageCount), [
-            'concurrency' => $this->concurrency,//并发数
-            'fulfilled' => function ($response, $index) use ($goutte_client) {
+        $pool = new Pool($client, $requests($this->totalPageCount), [
+            'concurrency' => $this->concurrency,
+            'fulfilled'   => function ($response, $index){
 
-                $response->filter('h2 > a')->reduce(function($node) use ($goutte_client){
-                    if(strlen($node->attr('title'))==0) {
-                        $title = $node->text();             //文章标题
-                        $link = $node->attr('href');        //文章链接
-                        $carwler = $goutte_client->request('GET',$link);       //进入文章
-                        $content=$carwler->filter('#emojify')->first()->text();     //获取内容
-                        Storage::disk('my_file')->put($title,$content);           //储存在本地
-                    }
-                });
+                $res = json_decode($response->getBody()->getContents());
+
+                $this->info("请求第 $index 个请求，用户 " . $this->users[$index] . " 的 Github ID 为：" .$res->id);
 
                 $this->countedAndCheckEnded();
             },
-            'rejected' => function ($reason, $index) {
-                $this->error("rejected");
-                $this->error("rejected reason: " . $reason);
+            'rejected' => function ($reason, $index){
+                $this->error("rejected" );
+                $this->error("rejected reason: " . $reason );
                 $this->countedAndCheckEnded();
             },
         ]);

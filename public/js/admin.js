@@ -4,27 +4,25 @@ $.ajaxSetup({
     }
 });
 
+$(document).ready(function () {
+    NProgress.start();
+});
+
+
+$(window).on('load', function () {
+    NProgress.done();
+});
+
 (function ($) {
-    'use strict';
-
-    $(document).ready(function () {
-        NProgress.start();
-    });
-
-
-    $(window).on('load', function () {
-        NProgress.done();
-    });
-
-
+    "use strict";
     $(function () {
-        var $fullText = $('.admin-fullText');
-        $('#admin-fullscreen').on('click', function () {
+        var $fullText = $(".admin-fullText");
+        $("#admin-fullscreen").on("click", function () {
             $.AMUI.fullscreen.toggle();
         });
 
         $(document).on($.AMUI.fullscreen.raw.fullscreenchange, function () {
-            $fullText.text($.AMUI.fullscreen.isFullscreen ? '退出全屏' : '开启全屏');
+            $fullText.text($.AMUI.fullscreen.isFullscreen ? "退出全屏" : "开启全屏");
         });
 
         //切换栏目
