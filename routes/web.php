@@ -17,9 +17,14 @@ Route::group(['middleware' => ['uv'],'namespace' => 'Customer', 'domain' => env(
 
     //前台首页
     Route::get('/', 'HomeController@index');
+    //测试接口
+    Route::get('/test', 'HomeController@test');
 
     //会员管理
     Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
+
+        Route::get('/', 'HomeController@customer')->middleware(['auth.customer']);
+        Route::post('torrent', 'HomeController@torrent')->middleware(['auth.customer'])->name('torrent');
 
         Route::get('login', 'LoginController@showLoginForm')->name('login');
         Route::post('login', 'LoginController@login')->name('do_login');;

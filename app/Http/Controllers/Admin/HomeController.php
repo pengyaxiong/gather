@@ -40,7 +40,7 @@ class HomeController extends Controller
     {
         $host = 'http://suo.im';
         $path = '/api.php';
-        $data = "?format=json&url=".urlencode(route('customer.register',['user_id'=>auth()->id()])).'&key=5cdbccf78e676d624f77a0cd@1fa1ba52d936a626405b288b3a81d32c';
+        $data = "?format=json&url=" . urlencode(route('customer.register', ['user_id' => auth()->id()])) . '&key=5cdbccf78e676d624f77a0cd@1fa1ba52d936a626405b288b3a81d32c';
 
         $url = $host . $path . $data;
         // var_dump($url);
