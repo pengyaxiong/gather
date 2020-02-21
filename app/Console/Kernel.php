@@ -27,6 +27,8 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
         $schedule->command('command:spider')->dailyAt('05:30');
+        //每天获取可用连接
+        $schedule->command('command:torrentkitty')->dailyAt('08:30');
 
         //清除日志
         $schedule->command('activitylog:clean')->daily();

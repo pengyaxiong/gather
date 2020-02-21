@@ -17,12 +17,11 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
-
+use Illuminate\Support\Facades\Redis;
 class HomeController extends Controller
 {
     private $link;
     private $links = [];
-    private $totalCount;
 
     private $detail = [];
 
@@ -48,32 +47,10 @@ class HomeController extends Controller
 
     public function customer()
     {
-//        $url = "http://torrentkittyurl.com/tk/";
-//        $goutte_client = new GoutteClient();
-//        $crawler = $goutte_client->request('GET', $url);
-//        $crawler->filter('.text>h2>strong>a')->each(function ($node) {
-//            $this->links[] = $node->first()->attr('href');
-//        });
-//
-//        $this->totalCount = count($this->links);
-//        $client = new GuzzleClient([
-//            // You can set any number of default request options.
-//            'timeout' => 2,
-//        ]);
-//        foreach ($this->links as $key => $link) {
-//
-//            try {
-//                //抛出错误的代码
-//                $client->get($link);
-//            } catch (ConnectException $ex) {
-//                //   return $ex->getMessage();
-//                continue;
-//            }
-//            $this->link = $link;
-//        }
-//
-//        $link = $this->link;
-        return view('customer.customer', compact('link'));
+        $this->link=Redis::get('torrentkittyurl');
+        $this->links=Redis::lrange ('torrentkittyurls', 0, -1);
+
+        return view('customer.customer');
     }
 
 
@@ -103,6 +80,7 @@ class HomeController extends Controller
         $url = "http://www.torrentkitty.vip/search/" . $keyword;
         $goutte_client = new GoutteClient();
         $crawler = $goutte_client->request('GET', $url);
+        
         $crawler->filter('.name')->slice(1)
             ->each(function ($node, $key) use ($goutte_client) {
                 $this->detail[$key]['name'] = $node->text();
