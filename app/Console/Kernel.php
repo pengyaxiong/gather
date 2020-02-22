@@ -24,16 +24,16 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        //* * * * * /usr/bin/php /www/wwwroot/gather/artisan schedule:run >> /dev/null 2>&1
+
         $schedule->command('command:spider')->dailyAt('05:30');
         //每天获取可用连接
         $schedule->command('command:torrentkitty')->dailyAt('08:30');
 
         //清除日志
-        $schedule->command('activitylog:clean')->daily();
+        //$schedule->command('activitylog:clean')->daily();
         //UV统计
-        $schedule->command('command:uv')->daily();
+        $schedule->command('command:uv')->hourly();
     }
 
     /**

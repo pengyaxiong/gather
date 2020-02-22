@@ -11,6 +11,7 @@ use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Pool;
 use GuzzleHttp\Psr7\Request as GuzzleRequest;
 use GuzzleHttp\Exception\ClientException;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -18,6 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Redis;
+
 class HomeController extends Controller
 {
     private $link;
@@ -47,9 +49,15 @@ class HomeController extends Controller
 
     public function customer()
     {
-        $this->link=Redis::get('torrentkittyurl');
-        $this->links=Redis::lrange ('torrentkittyurls', 0, -1);
-
+       // Redis::del('torrentkittyurl');
+        if (Redis::exists("torrentkittyurl")) {
+            $this->link = Redis::get('torrentkittyurl');
+           // $this->links = Redis::lrange('torrentkittyurls', 0, -1);
+        } else {
+            Artisan::call('command:torrentkitty');
+            $this->link = Redis::get('torrentkittyurl');
+           // $this->links = Redis::lrange('torrentkittyurls', 0, -1);
+        }
         return view('customer.customer');
     }
 
@@ -60,6 +68,8 @@ class HomeController extends Controller
      */
     public function torrent(Request $request)
     {
+        $this->link = Redis::get('torrentkittyurl');
+
         $messages = [
             'keyword.required' => '关键词不能为空!',
         ];
@@ -77,19 +87,21 @@ class HomeController extends Controller
             }
         }
         $keyword = $request->keyword;
-        $url = "http://www.torrentkitty.vip/search/" . $keyword;
+        $url = $this->link . "/search/" . $keyword;
         $goutte_client = new GoutteClient();
         $crawler = $goutte_client->request('GET', $url);
-        
+
         $crawler->filter('.name')->slice(1)
             ->each(function ($node, $key) use ($goutte_client) {
                 $this->detail[$key]['name'] = $node->text();
                 $this->detail[$key]['size'] = $node->siblings()->filter('.size')->text();
                 $this->detail[$key]['date'] = $node->siblings()->filter('.date')->text();
-                $this->detail[$key]['url'] = $node->siblings()->filter('.action')->children('a')->attr('href');
+                $article_url=$node->siblings()->filter('.action')->children('a')->attr('href');
                 //        echo $name . '--' . $size . '--' . $date  . '--' . $detail_url  . '<br>';
+                $article = $goutte_client->request('GET', $this->link.$article_url);
+                $this->detail[$key]['content'] = $article->filter('.magnet-link')->first()->text();
             });
-        return back()->with('detail',$this->detail);
+        return back()->with('detail', $this->detail);
     }
 
     /**

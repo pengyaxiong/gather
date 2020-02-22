@@ -50,7 +50,7 @@ class Torrentkitty extends Command
         $crawler->filter('.text>h2>strong>a')->each(function ($node) {
             $this->links[] = $node->first()->attr('href');
             $this->info($node->first()->attr('href'));
-            Redis::rpush('torrentkittyurls', $node->first()->attr('href'));
+          //  Redis::rpush('torrentkittyurls', $node->first()->attr('href'));
         });
 
         $this->totalCount = count($this->links);
