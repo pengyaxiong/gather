@@ -31,32 +31,13 @@ class UV
             $count = Redis::LLEN('WebStatistics');
             $redisList = Redis::lrange('WebStatistics', 0, $count);
 
-            if ($count > 0) {
-                foreach ($redisList as $key => $value) {
-                    $value=json_decode($value,true);
-                    if ($value['ip'] == $this->getIp()) {
-                        continue;
-                    }
-                    // 自主获取需要存储的数组。
-                    $redisLine = [
-                        'ip' => $this->getIp(),
-                        'brow' => $this->browseInfo(),
-                        'mac' => $this->GetMacAddr(config('admin.os_type')),
-                        'created_at' => time(),
-                    ];
-                    Redis::lpush('WebStatistics', json_encode($redisLine, JSON_UNESCAPED_UNICODE));
-                }
-
-
-            } else {
-                $redisLine = [
-                    'ip' => $this->getIp(),
-                    'brow' => $this->browseInfo(),
-                    'mac' => $this->GetMacAddr(config('admin.os_type')),
-                    'created_at' => time(),
-                ];
-                Redis::lpush('WebStatistics', json_encode($redisLine, JSON_UNESCAPED_UNICODE));
-            }
+            $redisLine = [
+                'ip' => $this->getIp(),
+                'brow' => $this->browseInfo(),
+                'mac' => $this->GetMacAddr(config('admin.os_type')),
+                'created_at' => time(),
+            ];
+            Redis::lpush('WebStatistics', json_encode($redisLine, JSON_UNESCAPED_UNICODE));
 
             return $next($request);
         } else {

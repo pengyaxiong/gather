@@ -42,14 +42,18 @@ class UV extends Command
         $count = Redis::LLEN('WebStatistics');
         $redisList = Redis::lrange('WebStatistics', 0, $count);
         $this->info($count);
-        array_walk($redisList, function ($value, $key) {
+        //3小时前
+        $time = date('Y-m-d H:i:s', strtotime("-3 hours"));
+        array_walk($redisList, function ($value, $key) use ($time) {
             //返回并删除名称为key的list中的尾元素
             $lpop = Redis::rpop('WebStatistics');
 
-            $saveParams = json_decode($lpop,true);
+            $saveParams = json_decode($lpop, true);
 
-            \App\Models\Tool\UV::create($saveParams);
-
+            $result = \App\Models\Tool\UV::where('ip', $saveParams['ip'])->where('created_at', '>', $time)->exists();
+            if (!$result) {
+                \App\Models\Tool\UV::create($saveParams);
+            }
         });
 
     }
