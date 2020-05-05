@@ -23,7 +23,7 @@ Route::group(['middleware' => ['uv'],'namespace' => 'Customer', 'domain' => env(
     //会员管理
     Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
 
-        Route::get('/', 'HomeController@customer')->middleware(['auth.customer']);
+        Route::get('/', 'HomeController@index')->middleware(['auth.customer']);
         Route::post('torrent', 'HomeController@torrent')->middleware(['auth.customer'])->name('torrent');
 
         Route::get('login', 'LoginController@showLoginForm')->name('login');
@@ -57,6 +57,8 @@ Route::group(['domain' => env('ADMIN_DOMAIN')], function () {
         require 'admin/cms.php';
         //消息管理
         // require 'admin/information.php';
+        //服务中心
+        require 'admin/service.php';
     });
 });
 

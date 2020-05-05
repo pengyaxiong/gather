@@ -1,3 +1,8 @@
+<style>
+    .hide_slide{
+       display: none !important;
+    }
+</style>
 <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
     <div class="am-offcanvas-bar admin-offcanvas-bar">
         <ul class="am-list admin-sidebar-list">
@@ -25,7 +30,7 @@
                                             {{$children->label}}
                                         </a>
                                     @else
-                                        <a href="javascript: void 0;" class="error_permission">
+                                        <a href="javascript: void 0;" class="error_permission hide_slide">
                                             <span class="am-icon-close"></span> 权限定义错误
                                         </a>
                                     @endif

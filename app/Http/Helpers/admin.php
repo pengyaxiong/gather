@@ -459,11 +459,11 @@ function build_image_attributes($attributes)
 function image_url($model, $attributes = [], $is_online = false)
 {
     $attributes_html = build_image_attributes($attributes);
-    if ($model->photo) {
+    if ($model->image) {
         if ($is_online) {
-            return ' <img src="' . env('QINIU_IMAGES_LINK') . $model->photo->identifier . '" ' . $attributes_html . '>';
+            return ' <img src="' . env('QINIU_IMAGES_LINK') . $model->image . '" ' . $attributes_html . '>';
         } else {
-            return ' <img src="' . $model->photo->identifier . '" ' . $attributes_html . '>';
+            return ' <img src="' . $model->image . '" ' . $attributes_html . '>';
         }
     } else {
         return ' <img src="/no_img.jpg" ' . $attributes_html . '>';
@@ -482,11 +482,11 @@ function thumb_url($model, $attributes = [], $is_online = false)
 {
 
     $attributes_html = build_image_attributes($attributes);
-    if ($model->photo) {
+    if ($model->image) {
         if ($is_online) {
-            return ' <img src="' . env('QINIU_IMAGES_LINK') . $model->photo->identifier . '-thumb' . '" ' . $attributes_html . '>';
+            return ' <img src="' . env('QINIU_IMAGES_LINK') . $model->image . '-thumb' . '" ' . $attributes_html . '>';
         } else {
-            return ' <img src="' . $model->photo->identifier . '" ' . $attributes_html . '>';
+            return ' <img src="' . $model->image . '" ' . $attributes_html . '>';
         }
     } else {
         return ' <img src="/no_img.jpg" ' . $attributes_html . '>';
@@ -504,11 +504,11 @@ function thumb_url($model, $attributes = [], $is_online = false)
 function large_url($model, $attributes = [], $is_online = false)
 {
     $attributes_html = build_image_attributes($attributes);
-    if ($model->photo) {
+    if ($model->image) {
         if ($is_online) {
-            return ' <img src="' . env('QINIU_IMAGES_LINK') . $model->photo->identifier . '-large' . '" ' . $attributes_html . '>';
+            return ' <img src="' . env('QINIU_IMAGES_LINK') . $model->image . '-large' . '" ' . $attributes_html . '>';
         } else {
-            return ' <img src="' . $model->photo->identifier . '" ' . $attributes_html . '>';
+            return ' <img src="' . $model->image . '" ' . $attributes_html . '>';
         }
     } else {
         return ' <img src="/no_img.jpg" ' . $attributes_html . '>';
